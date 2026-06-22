@@ -1,0 +1,178 @@
+{
+    "activeFile": "2_level_map.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "1_level_map.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 0.75,
+            "selectedLayer": 6,
+            "viewCenter": {
+                "x": 453.33333333333326,
+                "y": 318.66666666666663
+            }
+        },
+        "2_level_map.tmx": {
+            "expandedObjectLayers": [
+                2,
+                3
+            ],
+            "scale": 0.8429129464285714,
+            "selectedLayer": 3,
+            "viewCenter": {
+                "x": 448.4448857994042,
+                "y": 319.13141343925855
+            }
+        },
+        "3_battle_map.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 461.33333333333326,
+                "y": 316
+            }
+        },
+        "3_battle_map_.tmx": {
+            "scale": 0.8429129464285714,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 448.44488579940423,
+                "y": 319.72459450513077
+            }
+        },
+        "4_level_map.tmx": {
+            "expandedObjectLayers": [
+                9,
+                8,
+                6
+            ],
+            "scale": 0.75,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 370.6666666666667,
+                "y": 401.33333333333337
+            }
+        },
+        "5_level_map.tmx": {
+            "expandedObjectLayers": [
+                9,
+                2,
+                8
+            ],
+            "scale": 0.75,
+            "selectedLayer": 8,
+            "viewCenter": {
+                "x": 480,
+                "y": 308
+            }
+        },
+        "6_battle_map.tmx": {
+            "scale": 0.69765625,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 487.34602463605825,
+                "y": 319.6416573348264
+            }
+        },
+        "battle_1_map.tmx": {
+            "expandedObjectLayers": [
+                9,
+                8
+            ],
+            "scale": 0.84,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 452.38095238095235,
+                "y": 319.64285714285717
+            }
+        },
+        "level_1_map.tmx": {
+            "expandedObjectLayers": [
+                4
+            ],
+            "scale": 0.75,
+            "selectedLayer": 5,
+            "viewCenter": {
+                "x": 448,
+                "y": 319.33333333333326
+            }
+        },
+        "level_2_map.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 0.8429129464285714,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 448.44488579940423,
+                "y": 319.72459450513077
+            }
+        },
+        "level_3_map.tmx": {
+            "scale": 0.8429129464285714,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 448.44488579940423,
+                "y": 319.72459450513077
+            }
+        },
+        "tileset1.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "tileset2.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "tileset3.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tileset4.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "tileset5.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "tileset6.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        },
+        "tileset7.tsx": {
+            "scaleInDock": 0.5,
+            "scaleInEditor": 1
+        }
+    },
+    "last.externalTilesetPath": "C:/Akshaj Homework/ICS4U - Major Project 2/Maps",
+    "last.imagePath": "C:/Akshaj Homework/ICS4U - Major Project 2/Maps",
+    "map.lastUsedFormat": "tmx",
+    "map.width": 28,
+    "openFiles": [
+        "2_level_map.tmx",
+        "1_level_map.tmx"
+    ],
+    "project": "Level 1 Map.tiled-project",
+    "recentFiles": [
+        "1_level_map.tmx",
+        "2_level_map.tmx",
+        "3_battle_map.tmx",
+        "5_level_map.tmx",
+        "tileset7.tsx",
+        "6_battle_map.tmx",
+        "tileset6.tsx",
+        "4_level_map.tmx",
+        "tileset2.tsx",
+        "tileset1.tsx",
+        "tileset3.tsx",
+        "level_3_map.tmx"
+    ],
+    "tileset.lastUsedFilter": "Tiled tileset files (*.tsx *.xml)",
+    "tileset.lastUsedFormat": "tsx"
+}

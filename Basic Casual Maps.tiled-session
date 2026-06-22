@@ -1,0 +1,50 @@
+{
+    "activeFile": "",
+    "expandedProjectPaths": [
+        ".",
+        "Tileset actual bg imgs"
+    ],
+    "fileStates": {
+        "Tileset Casual Bg 1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tileset actual bg imgs/Tileset Casual Bg 1.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tileset actual bg imgs/basic casual 1 map.tmx": {
+            "scale": 0.7124999999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 479.2982456140352,
+                "y": 319.2982456140351
+            }
+        },
+        "Tileset actual bg imgs/basic casual 1 tileset.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "Tileset actual bg imgs/level 1 Map.tmx": {
+            "scale": 0.7689062499999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 442.8368217841903,
+                "y": 349.19731761837033
+            }
+        }
+    },
+    "last.imagePath": "C:/Akshaj Homework/ICS4U - Major Project 2/Tileset source bg imgs",
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+    ],
+    "project": "Basic Casual Maps.tiled-project",
+    "recentFiles": [
+        "Tileset actual bg imgs/basic casual 1 map.tmx",
+        "Tileset actual bg imgs/basic casual 1 tileset.tsx",
+        "Tileset actual bg imgs/level 1 Map.tmx",
+        "Tileset actual bg imgs/Tileset Casual Bg 1.tsx",
+        "Tileset Casual Bg 1.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx"
+}
