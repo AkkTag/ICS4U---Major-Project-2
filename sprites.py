@@ -2,8 +2,6 @@ import pygame
 import pytmx
 import sys
 import game
-# def walking():
-#     pass
 
 class SpriteSheet():
     def __init__(self, image):
@@ -75,6 +73,7 @@ class SpriteSheet():
         image = pygame.transform.scale(image, (frame_width * scale, frame_height * scale))
         return image
 
+#note: initially designed for separate player and enemy classes, now grouped under character class through inheritance
 class Character(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
@@ -147,16 +146,6 @@ class Character(pygame.sprite.Sprite):
 
     def update(self, dt, tmx_data, current_map): #work on this function next
         
-        #if current_map in maps_list:
-            #self.movement_enabled = False
-            
-        #moving, collision_rect, transition_signal = self.move(current_map, dt) #move the player and check if they are moving or not, this will be used to determine the animation state
-        
-        # Animation state
-        # if moving:
-        #     self.state = "walk"
-        # else:
-        #     self.state = "idle"
 
         self.rect.topleft = (self.x, self.y)
 
@@ -192,7 +181,7 @@ class Character(pygame.sprite.Sprite):
                     self.animation_finished = True
 
         # Preserve the player's feet position when changing frame so
-        # sprite size changes don't teleport the collision rect.
+        # sprite size changes don't teleport the collision rect
         midbottom = self.rect.midbottom
         if self.frame_index >= len(animation_list):
             self.frame_index = 0
@@ -206,66 +195,16 @@ class Player(Character):
     def __init__(self, x, y):
         super().__init__(x, y)
         
-        # self.images = {}
-        # #convert_alpha() is used to optimize the image for faster blitting, it also allows for transparency in the image
-        # self.image = pygame.Surface((32, 32), pygame.SRCALPHA) #might not be necessary, but could be a pfp (?) or a default image for the player
-
-        # self.rect = self.image.get_rect(topleft=(x, y)) #will be modified as needed, #collision detection
-        # self.partial_rect = pygame.Rect(0, 0, self.rect.width, 15) #used for more precise collision detection, will be modified as needed
-        # self.partial_rect.midbottom = self.rect.midbottom
-        
-        # self.x = x
-        # self.y = y
-        # self.state = "idle"
-        # self.direction = "right"
         self.velocity = pygame.math.Vector2(0, 0)
 
         self.collision_rect = pygame.Rect(0, 0, 20, 12) #used for feet hit box, will be modified as needed
         self.collision_rect.midbottom = self.rect.midbottom
-
-        #see what the purposes of the below attributes are
-        # self.frame_index = 0
-        # self.animation_speed = 0.1
-        # self.animation_timer = 0
-
-        # self.previous_state = self.state
-        # self.previous_direction = self.direction
 
         self.movement_enabled = True
 
         self.on_portal_timer = 0  # Time spent on current portal
         self.current_portal = None  # Which portal player is on
         self.portal_threshold = 3.0  # 3 seconds in seconds
-
-        # self.health = 2000
-        # self.energy = 0 #might need to adjust the initial energy value
-        # self.percent_impact = 0.9 #might need to adjust the initial impact value
-
-
-    # def load_animations(self, cols, scale):
-        
-    #     for state in self.animations:
-
-    #         self.images[state] = {}
-    #         for direction in self.animations[state]:
-    #             self.images[state][direction] = []
-
-    #             for frame in self.animations[state][direction]:
-
-    #                 if "left" in direction:
-    #                     sheet = self.left_spritesheet
-    #                 else:
-    #                     sheet = self.right_spritesheet
-
-    #                 frame_x = frame % cols
-    #                 frame_y = frame // cols
-
-    #                 image = sheet.get_image(
-    #                     (frame_x, frame_y),
-    #                     scale
-    #                 )
-
-    #                 self.images[state][direction].append(image)
 
     def update(self, dt, tmx_data, current_map): #work on this function next
         
@@ -341,27 +280,6 @@ class Player(Character):
             self.on_portal_timer = 0
             self.current_portal = None
 
-        # if self.collision_rect.colliderect(current_scrn.entry_portal) and self.state == "idle" and self.direction == "left":
-        #     print("Entered entry portal")
-        #     # previous level
-
-        # elif self.collision_rect.colliderect(current_scrn.exit_portal) and self.state == "idle" and self.direction == "right":
-        #     print("Entered exit portal")
-        #     # next level
-
-        # need to figure out how to access entry_ and exit_portal for each map, since they will be different for each map, maybe they can be attributes of the Map_Stage class and passed into the player update function as needed?
-
-        #if self.x >= '''???''' and '''???''' <= self.y <= '''???''':
-            # next_level() - figure out where (which file) to create this function
-            #pass
-
-        #write code here (setting velocity to 0 if colliding with a boundary)
-        # if self.rect.collidelist(boundaries):
-        #     self.velocity = pygame.math.Vector2(0, 0)
-        
-        #later on:
-        #check collisions with boundaries and adjust velocity accordingly, this will allow for smoother movement along walls and corners
-        
         # LEFT
         if self.movement_enabled:
             if keys[pygame.K_LEFT]:
@@ -446,320 +364,13 @@ class Player(Character):
 
         self.collision_rect.midbottom = self.rect.midbottom #sync the collision rect with the player's position after vertical movement
         
-        #ONE BUG - one point in the map has a collision rect but the player is able to go right through (top branch path)
-
-        
-        # ---------------- HORIZONTAL ----------------
-
-        # old_x = self.x
-
-        # self.x += self.velocity.x * speed
-        # self.rect.x = round(self.x)
-
-        # collision_rect = pygame.Rect(
-        #     self.rect.x + 10,
-        #     self.rect.bottom - 12,
-        #     self.rect.width - 20,
-        #     12
-        # )
-
-        # for boundary in boundaries:
-        #     if collision_rect.colliderect(boundary):
-
-        #         self.x = old_x
-        #         self.rect.x = round(self.x)
-
-        #         break
-
-
-        # # ---------------- VERTICAL ----------------
-
-        # old_y = self.y
-
-        # self.y += self.velocity.y * speed
-        # self.rect.y = round(self.y)
-
-        # collision_rect = pygame.Rect(
-        #     self.rect.x + 10,
-        #     self.rect.bottom - 12,
-        #     self.rect.width - 20,
-        #     12
-        # )
-
-        # for boundary in boundaries:
-        #     if collision_rect.colliderect(boundary):
-
-        #         self.y = old_y
-        #         self.rect.y = round(self.y)
-
-        #         break
+        #one issue - one point in the map has a collision rect but the player is able to go right through (top branch path)
         
         return moving, self.collision_rect, transition_signal #returning the collision rect for debugging purposes, will be removed later on
-        #pygame.draw.rect(game.screen, (0, 255, 0), collision_rect, 2)
-
-        # # ---------- HORIZONTAL ----------
-        # self.x += self.velocity.x * speed
-        # self.rect.x = round(self.x)
-
-        # for boundary in boundaries:
-        #     if self.rect.colliderect(boundary):
-
-        #         # moving right
-        #         if self.velocity.x > 0:
-        #             self.rect.right = boundary.left
-
-        #         # moving left
-        #         elif self.velocity.x < 0:
-        #             self.rect.left = boundary.right
-
-        #         # sync float position
-        #         self.x = self.rect.x
-
-
-        # # ---------- VERTICAL ----------
-        # self.y += self.velocity.y * speed
-        # self.rect.y = round(self.y)
-
-        # for boundary in boundaries:
-        #     if self.rect.colliderect(boundary):
-
-        #         # moving down
-        #         if self.velocity.y > 0:
-        #             self.rect.bottom = boundary.top
-
-        #         # moving up
-        #         elif self.velocity.y < 0:
-        #             self.rect.top = boundary.bottom
-
-        #         # sync float position
-        #         self.y = self.rect.y
-
-        # SECOND IMPLEMENTATION (sliding along walls, no more movement reverting, will be modified later on for more complex collision shapes and multiple types of boundaries)
-        # # Test horizontal movement
-        # test_rect = self.rect.move(self.velocity.x * speed, 0)
-        # horiz_hit = test_rect.collidelist(boundaries)
-        
-        # # Allow horizontal movement unless moving into a vertical wall
-        # allow_horiz = True
-        # if horiz_hit != -1 and self.velocity.x != 0:
-        #     boundary = boundaries[horiz_hit]
-        #     # Only block if boundary is a vertical wall (taller than wide)
-        #     # Floors (wider than tall) don't block horizontal movement
-        #     if boundary.height > boundary.width:
-        #         # It's a wall; check if moving into it
-        #         if self.velocity.x > 0 and test_rect.right > boundary.left:
-        #             # Moving right into wall's left edge
-        #             allow_horiz = False
-        #         elif self.velocity.x < 0 and test_rect.left < boundary.right:
-        #             # Moving left into wall's right edge
-        #             allow_horiz = False
-        
-        # if allow_horiz:
-        #     self.x += self.velocity.x * speed
-        #     self.rect.x = round(self.x)
-        
-        # # Test vertical movement
-        # test_rect = self.rect.move(0, self.velocity.y * speed)
-        # vert_hit = test_rect.collidelist(boundaries)
-        
-        # # Allow vertical movement unless moving into a horizontal floor
-        # allow_vert = True
-        # if vert_hit != -1 and self.velocity.y != 0:
-        #     boundary = boundaries[vert_hit]
-        #     # Only block if boundary is a horizontal floor (wider than tall)
-        #     # Walls (taller than wide) don't block vertical movement
-        #     if boundary.width > boundary.height:
-        #         # It's a floor; check if moving into it
-        #         if self.velocity.y > 0 and test_rect.bottom > boundary.top:
-        #             # Moving down into floor's top edge
-        #             allow_vert = False
-        #         elif self.velocity.y < 0 and test_rect.top < boundary.bottom:
-        #             # Moving up into floor's bottom edge
-        #             allow_vert = False
-        
-        # if allow_vert:
-        #     self.y += self.velocity.y * speed
-        #     self.rect.y = round(self.y)
-
-        #INITIAL IMPLEMENTATION (no sliding along walls, will be modified later on)
-        # rect_temp = self.partial_rect.move(self.velocity * speed)
-       
-        # if rect_temp.collidelist(boundaries) != -1:
-        #     self.velocity = pygame.math.Vector2(0, 0)
-        # else:
-        #     self.x += self.velocity.x * speed
-        #     self.y += self.velocity.y * speed
-        #     self.rect.topleft = (self.x, self.y)
-        #     self.partial_rect.midbottom = self.rect.midbottom
-
-        #HORIZONTAL MOVEMENT AND COLLISION CHECK
-        # if self.velocity.x != 0:
-        #     self.x += self.velocity.x * speed
-        #     self.rect.x = round(self.x)
-
-        #     #self.rect.topleft = (self.x, self.y)
-
-        #     #Next: IMPLEMENT this new function below - do not need midbottom and movement reverting anymore
-        #     rect_temp = self.rect.move(self.velocity * speed)
-        #     if rect_temp.collidelist(boundaries) != -1:
-
-
-        #     self.partial_rect.midbottom = self.rect.midbottom
-
-        #     # Check if horizontal move caused a collision
-        #     hit = self.partial_rect.collidelist(boundaries)
-            
-        #     if hit != -1: # -1 means no collision
-        #         # Collision found! Undo the movement on the X axis
-        #         self.x -= self.velocity.x * speed
-        #         self.rect.x = round(self.x)
-        #         self.partial_rect.midbottom = self.rect.midbottom
-        #         self.velocity.x = 0
-
-        # #VERTICAL MOVEMENT AND COLLISION CHECK
-        # if self.velocity.y != 0:
-        #     self.y += self.velocity.y * speed
-        #     self.rect.y = round(self.y)
-            
-        #     self.partial_rect.midbottom = self.rect.midbottom
-
-        #     # Check if vertical move caused a collision
-        #     hit = self.partial_rect.collidelist(boundaries)
-        #     if hit != -1:
-        #         # Collision found! Undo the movement on the Y axis
-        #         self.y -= self.velocity.y * speed
-        #         self.rect.y = round(self.y)
-        #         self.partial_rect.midbottom = self.rect.midbottom
-        #         self.velocity.y = 0
-
-        # # Final pass: Make sure feet are perfectly snapped to the final position
-        # self.partial_rect.midbottom = self.rect.midbottom
-        
-        #self.rect.topleft = (self.x, self.y)
-
-        #return moving
-
-    # def animate(self, dt):
-
-    #     animation_list = self.images[self.state].get(self.direction)
-    #     if not animation_list:
-    #         return
-
-    #     self.animation_timer += dt
-
-    #     if self.animation_timer >= self.animation_speed:
-
-    #         self.animation_timer = 0
-
-    #         self.frame_index += 1
-
-    #         if self.frame_index >= len(animation_list):
-    #             self.frame_index = 0
-
-    #     # Preserve the player's feet position when changing frame so
-    #     # sprite size changes don't teleport the collision rect.
-    #     midbottom = self.rect.midbottom
-    #     if self.frame_index >= len(animation_list):
-    #         self.frame_index = 0
-    #     self.image = animation_list[self.frame_index]
-    #     self.rect = self.image.get_rect(midbottom=midbottom)
-    #     # Keep self.x/self.y consistent with the rect used for movement
-    #     self.x = float(self.rect.x)
-    #     self.y = float(self.rect.y)
     
 class Enemy(Character):
     def __init__(self, x, y):
         super().__init__(x, y)
-        #convert_alpha() is used to optimize the image for faster blitting, it also allows for transparency in the image
-        # self.images = {}
-        # self.image = pygame.Surface((32, 32), pygame.SRCALPHA) #might not be necessary, but could be a default image for the enemy
-        # self.rect = self.image.get_rect(topleft=(x, y)) #will be modified as needed, #collision detection
-        # self.x = x
-        # self.y = y
-
-        # self.state = "idle"
-        # self.direction = "right"
-
-        # self.frame_index = 0
-        # self.animation_speed = 0.1
-        # self.animation_timer = 0
-
-        # self.previous_state = self.state
-        # self.previous_direction = self.direction
-        
-    #def update(self, dt): #work on this function next
-        
-        #moving, collision_rect, transition_signal = self.move(current_map, dt) #move the player and check if they are moving or not, this will be used to determine the animation state
-        
-        # Animation state
-        # if moving:
-        #     self.state = "walk"
-        # else:
-        #     self.state = "idle"
-
-        # self.rect.topleft = (self.x, self.y)
-
-        # if self.state != self.previous_state or self.direction != self.previous_direction:
-        #     self.frame_index = 0
-        #     self.previous_state = self.state
-        #     self.previous_direction = self.direction
-
-        # self.animate(dt)
-
-        #return collision_rect, transition_signal #returning the collision rect for debugging purposes, will be removed later on
-
-    # def load_animations(self, cols, scale):
-        
-    #     for state in self.animations:
-
-    #         self.images[state] = {}
-    #         for direction in self.animations[state]:
-    #             self.images[state][direction] = []
-
-    #             for frame in self.animations[state][direction]:
-
-    #                 if "left" in direction:
-    #                     sheet = self.left_spritesheet
-    #                 else:
-    #                     sheet = self.right_spritesheet
-
-    #                 frame_x = frame % cols
-    #                 frame_y = frame // cols
-
-    #                 image = sheet.get_image(
-    #                     (frame_x, frame_y),
-    #                     scale
-    #                 )
-
-    #                 self.images[state][direction].append(image)
-
-    # def animate(self, dt):
-
-    #     animation_list = self.images[self.state].get(self.direction)
-    #     if not animation_list:
-    #         return
-
-    #     self.animation_timer += dt
-
-    #     if self.animation_timer >= self.animation_speed:
-
-    #         self.animation_timer = 0
-
-    #         self.frame_index += 1
-
-    #         if self.frame_index >= len(animation_list):
-    #             self.frame_index = 0
-
-    #     # Preserve the player's feet position when changing frame so
-    #     # sprite size changes don't teleport the collision rect.
-    #     midbottom = self.rect.midbottom
-    #     if self.frame_index >= len(animation_list):
-    #         self.frame_index = 0
-    #     self.image = animation_list[self.frame_index]
-    #     self.rect = self.image.get_rect(midbottom=midbottom)
-    #     # Keep self.x/self.y consistent with the rect used for movement
-    #     self.x = float(self.rect.x)
-    #     self.y = float(self.rect.y)
     
 
 class Object(pygame.sprite.Sprite): #might need a Projectile class, Object class might not be necessary

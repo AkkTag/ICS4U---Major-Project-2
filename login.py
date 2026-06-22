@@ -13,7 +13,7 @@ def setup_login_page():
 
     window = Tk()
     window.geometry("896x640")
-    window.configure(bg="#FFA1F8") #title="Login")
+    window.configure(bg="#FFA1F8")
     window.title("Game Login")
     action_var = StringVar(value="")
 

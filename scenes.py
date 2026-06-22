@@ -22,7 +22,7 @@ class Map_Stage:
             self.current_battle = Battle(player, enemy, screen) # placeholder for battle system, will be used for combat encounters with enemies in the future
 
         self.load_endpoints()
-        self.load_obj_layers(screen)
+        #self.load_obj_layers(screen)
         #below attributes need to be initialized based on each map
         # self.entry_x_range = entry_x_range
         # self.entry_y_range = entry_y_range
@@ -54,14 +54,14 @@ class Map_Stage:
 
         #do I need to return the entry and exit rects? Look into this later, maybe they can just be attributes of the Map_Stage class and accessed as needed
     
-    def load_obj_layers(self, screen):
-        covering_objs = self.tmx_data.get_layer_by_name("Covering_Tiles")
+    # def load_obj_layers(self, screen):
+    #     covering_objs = self.tmx_data.get_layer_by_name("Covering_Tiles")
 
-        if covering_objs is not None:
+    #     if covering_objs is not None:
 
-            for obj in covering_objs:
-                obj_rect = obj.get_rect()
-                screen.blit(obj, obj_rect)
+    #         for obj in covering_objs:
+    #             obj_rect = obj.get_rect()
+    #             screen.blit(obj, obj_rect)
 
     def load_level(self):
 

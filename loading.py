@@ -63,7 +63,7 @@ class LoadingScreen:
         text_rect = text_surface.get_rect(center=(self.screen_width // 2, self.screen_height // 2 - 15))
         screen.blit(text_surface, text_rect)
         
-        # Optional: Add animated dots (or pulsing effect)
+        # animation dots is an option
         self.render_animation(screen, elapsed_time)
         #self.render_with_progress(screen, progress=0.0) - implement this if time allows
     
@@ -90,26 +90,6 @@ class LoadingScreen:
         for i in range(bar_count):
             x_pos = start_x + (i * (image_width + spacing))
             screen.blit(self.loading_bar_image, (x_pos, bar_y))
-
-        # """
-        # Add a simple animation (dots that appear and disappear).
-        
-        # Args:
-        #     screen: The pygame display surface
-        #     elapsed_time: Total time elapsed
-        # """
-        # # Calculate number of dots based on elapsed time (1-3 dots cycling)
-        # dot_count = (int(elapsed_time * 2) % 3) + 1
-        # dots = "." * dot_count
-        
-        # # Render animated dots below main text
-        # font = pygame.font.Font(None, 36)
-        # dots_surface = font.render(dots, True, self.text_colour)
-        # dots_rect = dots_surface.get_rect(
-        #     centerx=self.screen_width // 2,
-        #     top=(self.screen_height // 2) + 70
-        # )
-        # screen.blit(dots_surface, dots_rect)
     
     def render_with_progress(self, screen, progress=0.5):
         """
@@ -153,7 +133,7 @@ class LoadingScreen:
         screen.blit(percentage_surface, percentage_rect)
 
 
-#Example usage (for testing)
+#testing purposes
 if __name__ == "__main__":
     pygame.init()
     screen = pygame.display.set_mode((896, 640))
@@ -173,10 +153,6 @@ if __name__ == "__main__":
         
         # Test basic loading screen
         loading.render(screen, elapsed)
-        
-        # Test with progress bar (uncomment to test)
-        # progress = (elapsed % 3) / 3  # 0-1 over 3 seconds
-        # loading.render_with_progress(screen, progress)
         
         pygame.display.update()
     

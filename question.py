@@ -1,15 +1,12 @@
 import pygame
 import sys
 
-# Initialize Pygame
-# pygame.init()
-
 # Constants
 SCREEN_WIDTH = 896 #1200 diff: -304
 SCREEN_HEIGHT = 640 #675 diff: -35
 FPS = 60
 
-# Color Palette (Matching your UI assets)
+# colours, constants for each access
 DARK_BLUE = (6, 18, 36)      # Base background
 BOX_BG = (12, 32, 64)         # Option box interior
 BORDER_GOLD = (218, 165, 32)  # Normal gold border
@@ -17,10 +14,6 @@ HOVER_GOLD = (255, 223, 0)    # Bright gold for interaction
 TEXT_WHITE = (240, 240, 240)
 TEXT_GOLD = (245, 215, 120)
 
-# Set up screen
-# screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-# pygame.display.set_caption("Dynastic - Question Screen")
-# clock = pygame.time.Clock()
 
 # Fonts (Using system defaults; substitute with custom .ttf files if needed)
 font_title = pygame.font.SysFont("cambria", 40, bold=True)
@@ -81,7 +74,7 @@ class QuestionScreen:
                 
                 return ("back", None)
                 #print("Going Back") 
-                # Add scene switching logic here
+                # scene switching logic
 
             return (None, None)
     
@@ -89,19 +82,16 @@ class QuestionScreen:
         return selected_index == self.correct_ans_index
 
     def draw(self, screen):
-        # Fill deep dark blue background
-        # background = pygame.Surface((896, 640), pygame.SRCALPHA)
-        # background.fill(DARK_BLUE)
         
         screen.fill(DARK_BLUE)
 
         mouse_pos = pygame.mouse.get_pos()
         
-        # --- DRAW HEADER TEXT ---
+        # header (on top of question) text
         title_surf = font_title.render("CHALLENGE", True, TEXT_GOLD)
         screen.blit(title_surf, (screen.width // 2 - title_surf.get_width() // 2, 40))
         
-        # --- DRAW QUESTION BOX ---
+        # question box
         pygame.draw.rect(screen, BOX_BG, self.question_rect)
         pygame.draw.rect(screen, BORDER_GOLD, self.question_rect, 3) # Outer border
         pygame.draw.rect(screen, BORDER_GOLD, self.question_rect.inflate(-10, -10), 1) # Decorative inner thin border
@@ -110,13 +100,13 @@ class QuestionScreen:
         screen.blit(q_text_surf, (self.question_rect.centerx - q_text_surf.get_width() // 2, 
                                    self.question_rect.centery - q_text_surf.get_height() // 2))
 
-        # --- DRAW 2x2 GRID OPTIONS ---
+        # option choices, multiple choice
         for index, option in enumerate(self.ans_options):
             rect = option["rect"]
             is_hovered = rect.collidepoint(mouse_pos)
             is_selected = (self.selected_option == index)
             
-            # Determine Border Color based on state
+            # bordor colour determined based on state
             if is_selected:
                 border_color = HOVER_GOLD
                 bg_color = (20, 50, 95) # Distinct background color if selected
@@ -131,22 +121,20 @@ class QuestionScreen:
             pygame.draw.rect(screen, bg_color, rect)
 
             if not is_selected:
-                #pygame.draw.rect(surface, border_color, rect, 2 if not is_selected else 4)
-
                 pygame.draw.rect(screen, border_color, rect, 2)
             else:
                 pygame.draw.rect(screen, border_color, rect, 4)
 
-            # Render Option Titles and Descriptions
+            # option titles + descriptions underneath
             title_color = HOVER_GOLD if (is_hovered or is_selected) else TEXT_WHITE
             t_surf = font_option.render(option["title"], True, title_color)
             s_surf = font_sub.render(option["sub"], True, TEXT_GOLD)
             
-            # Left-align text inside the boxes with some padding
+            # alignment + padding
             screen.blit(t_surf, (rect.x + 30, rect.y + 22))
             screen.blit(s_surf, (rect.x + 30, rect.y + 55))
 
-        # --- DRAW UTILITY BUTTONS (SUBMIT / BACK) ---
+        # submit and back buttons for each question
         for btn_rect, btn_text in [(self.submit_rect, "SUBMIT"), (self.back_rect, "BACK")]:
             btn_hover = btn_rect.collidepoint(mouse_pos)
             btn_border = HOVER_GOLD if btn_hover else BORDER_GOLD
@@ -157,27 +145,3 @@ class QuestionScreen:
             btn_surf = font_option.render(btn_text, True, TEXT_GOLD)
             screen.blit(btn_surf, (btn_rect.centerx - btn_surf.get_width() // 2, 
                                     btn_rect.centery - btn_surf.get_height() // 2))
-
-        #screen.blit(background, (0, 0))
-
-
-# if __name__ == "__main__":
-#     # Initialize state handler
-#     question_screen = QuestionScreen("FAVOURITE ANIMAL?", [["A. LERNAEAN HYDRA", "REGENERATES HEADS"],
-#                                                         ["B. GRIFFIN", "HALF EAGLE, HALF LION"],
-#                                                         ["C. CHIMERA", "LION, GOAT, SNAKE PARTS"],
-#                                                         ["D. CERBERUS", "GUARD OF THE UNDERWORLD"]], 2)
-
-#     # Game Loop
-#     while True:
-#         for event in pygame.event.get():
-#             if event.type == pygame.QUIT:
-#                 pygame.quit()
-#                 sys.exit()
-                
-#             question_screen.handle_event(event)
-            
-#         # Render loop
-#         question_screen.draw(screen)
-#         pygame.display.update()
-#         #clock.tick(FPS)

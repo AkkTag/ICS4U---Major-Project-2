@@ -6,7 +6,7 @@ from scenes import Map_Stage
 from sprites import Player, Enemy, Object, Wizard, Warrior, Archer  # Cleaned up unused sprite imports for now
 from loading import LoadingScreen
 
-# Temporary test toggle: set to True to start directly on the battle screen.
+# Temporary test: set to True to start directly on the battle screen
 TEST_BATTLE_ONLY = True
 
 
@@ -80,12 +80,12 @@ def run_game(user_info):
     pygame.mixer.music.play(loops=0)
 
     while gameActive:
-        # 1. DELTA TIME CALCULATION (Fixed)
-        # clock.tick(60) limits the framerate AND returns the milliseconds since the last frame.
-        # Dividing by 1000.0 converts it to seconds for smooth, frame-independent movement.
+        # delta time calculation (fixed)
+        # clock.tick(60) limits the framerate AND returns the milliseconds since the last frame
+        # Dividing by 1000.0 converts it to seconds for smooth, frame-independent movement
         dt = clock.tick(60) / 1000.0
 
-        # Reset battle state whenever a battle screen is entered during a transition.
+        # Reset battle state whenever a battle screen is entered during a transition
         if battle_needs_reset and current_scrn in battles_list:
             current_scrn.current_battle.reset_battle()
             battle_needs_reset = False
@@ -109,7 +109,7 @@ def run_game(user_info):
                 
             
             
-        # Position player at entry point if not already positioned (e.g., after a level transition)
+        # Position player at entry point if not already positioned (ex. after a level transition)
         if not player_positioned and current_scrn in maps_list:
             
             if teleporting_to == "next level" or teleporting_to is None: # default to next level teleportation for the first level, can be adjusted as needed
@@ -129,7 +129,7 @@ def run_game(user_info):
                     player1.y = portal_center[1] - (player1.rect.height - player1.collision_rect.height / 2)
                     player_positioned = True
 
-        # 3. TRANSITION HANDLING
+        # transitions
         if is_transitioning:
             transition_timer += dt
             
@@ -145,7 +145,7 @@ def run_game(user_info):
                 # Handle the actual level transition based on pending signal
                 if transition_signal_pending == "transition_to_next":
                     print("Loaded next level")
-                    # TODO: Implement level switching when you have multiple levels
+                    # Implement level switching for multiple levels
                     player_positioned = False # reset player positioned flag for the new level
                     teleporting_to = "next level"
 
@@ -162,7 +162,7 @@ def run_game(user_info):
                     
                 elif transition_signal_pending == "transition_to_previous":
                     print("Loaded previous level")
-                    # TODO: Implement level switching when you have multiple levels
+                    # TODO: Implement level switching for multiple levels
                     player_positioned = False # reset player positioned flag for the new level
                     teleporting_to = "previous level"
 
@@ -180,8 +180,8 @@ def run_game(user_info):
                 transition_signal_pending = None
             continue  # Skip to next frame during transition
 
-        # 4. GAME LOGIC UPDATES
-        # Disable player movement on battle maps so combat stays turn-based.
+        # game logic updating
+        # Disable player movement on battle maps so combat stays turn-based
         player1.movement_enabled = not (current_scrn in battles_list)
 
         if current_scrn in maps_list:
@@ -202,7 +202,7 @@ def run_game(user_info):
                 transition_signal_pending = "transition_to_previous"
                 player1.on_portal_timer = 0  # Reset portal timer
         
-        # 5. DRAWING / RENDERING (only if not transitioning)
+        # if not transitioning, drawing/blitting section
         screen.blit(level_surface, (0, 0)) 
         
         # Debugging collision rect

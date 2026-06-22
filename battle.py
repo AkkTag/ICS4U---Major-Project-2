@@ -3,7 +3,7 @@ import pygame
 pygame.init()
 
 from attacks import Attack
-from sprites import Wizard, Warrior, Archer # Cleaned up unused sprite imports for now 
+from sprites import Wizard, Warrior, Archer
 from question import QuestionScreen
 import random
 
@@ -40,7 +40,7 @@ class Battle:
             self.player_type = "Archer"
 
         self.enemy = enemy
-        self.battle_state = "DEFAULT"  # or "ENEMY_TURN", "VICTORY", "DEFEAT"
+        self.battle_state = "DEFAULT"  # or ENEMY_TURN, VICTORY, DEFEAT
         
         self.intro_timer = 2.0  # 2 seconds for intro animation, can be used for other timed events in the battle system as well
         
@@ -89,14 +89,6 @@ class Battle:
         self.previous_qa = None
 
         self.exit_victor_button = pygame.Rect(0, 0, 10, 10)
-        # if self.player.type == "Wizard":
-        #     self.player_turn_menu = pygame.image.load("game_assets/Battle Attack Designs Wizard PNG.png").convert_alpha()
-
-        # elif self.player.type == "Warrior":
-        #     self.player_turn_menu = pygame.image.load("game_assets/Battle Attack Designs Warrior PNG.png").convert_alpha()
-    
-        # elif self.player.type == "Archer":
-        #     self.player_turn_menu = pygame.image.load("game_assets/Battle Attack Designs Archer PNG.png").convert_alpha()
 
         attacks = {
             "Wizard": [Attack("Magic Forecast", 20, 5),
@@ -205,12 +197,6 @@ class Battle:
             if self.attchoice_rect_tl.collidepoint(mouse_pos):
                 print("Second menu option 1 selected")
                 self.attack_choice = self.attoptions[0]
-                # self.attack_delay_timer = 0.0
-                # self.attack_effect_applied = False
-                # self.player.state = "idle"
-                # self.player.frame_index = 0
-                # self.player.animation_timer = 0.0
-                #self.battle_state = "PLAYER_ATTACK_DELAY"
                 
                 self.battle_state = "QUESTION" #!!!
 
@@ -229,12 +215,6 @@ class Battle:
             if self.attchoice_rect_tr.collidepoint(mouse_pos):
                 print("Second menu option 2 selected")
                 self.attack_choice = self.attoptions[1]
-                # self.attack_delay_timer = 0.0
-                # self.attack_effect_applied = False
-                # self.player.state = "idle"
-                # self.player.frame_index = 0
-                # self.player.animation_timer = 0.0
-                #self.battle_state = "PLAYER_ATTACK_DELAY"
 
                 self.battle_state = "QUESTION" #!!!
 
@@ -253,12 +233,6 @@ class Battle:
             if self.attchoice_rect_bl.collidepoint(mouse_pos):
                 print("Second menu option 3 selected")
                 self.attack_choice = self.attoptions[2]
-                # self.attack_delay_timer = 0.0
-                # self.attack_effect_applied = False
-                # self.player.state = "idle"
-                # self.player.frame_index = 0
-                # self.player.animation_timer = 0.0
-                #self.battle_state = "PLAYER_ATTACK_DELAY"
                 
                 self.battle_state = "QUESTION" #!!!
 
@@ -277,12 +251,6 @@ class Battle:
             if self.attchoice_rect_br.collidepoint(mouse_pos):
                 print("Second menu option 4 selected")
                 self.attack_choice = self.attoptions[3]
-                # self.attack_delay_timer = 0.0
-                # self.attack_effect_applied = False
-                # self.player.state = "idle"
-                # self.player.frame_index = 0
-                # self.player.animation_timer = 0.0
-                #self.battle_state = "PLAYER_ATTACK_DELAY"
 
                 self.battle_state = "QUESTION" #!!!
 
@@ -356,23 +324,6 @@ class Battle:
 
                 self.battle_state = "PLAYER_ATTACK"
 
-        
-
-        #     if self.current_qa is not None:
-        #         self.previous_qa = self.current_qa
-
-        #     rand_qa = random.randint(0, len(qa_options_list) - 1)
-
-        #     while self.previous_qa == qa_options_list[rand_qa]:
-        #         rand_qa = random.randint(0, len(qa_options_list) - 1)
-            
-        #     #if the new qa received is DIFFERENT from the one just before
-        #     self.current_qa = qa_options_list[rand_qa]
-
-            #self.current_qa.handle_event() #?
-
-
-
         elif self.battle_state == "PLAYER_ATTACK":
             
             print("PLAYER_ATTACK")
@@ -397,9 +348,6 @@ class Battle:
                 self.player.animation_finished
             )
 
-            # if not self.attack_effect_applied:
-            #     self.attack_choice.attack_effect(self.player, self.enemy)
-            #     self.attack_effect_applied = True
             if self.player.animation_finished:
                 
                 self.player.state = "idle"
@@ -449,9 +397,6 @@ class Battle:
 
     def enemy_attack(self):
         pass
-
-    # def draw(self, screen):
-    #     pass
 
     def draw(self, screen):
 
