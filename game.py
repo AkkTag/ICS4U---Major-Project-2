@@ -7,7 +7,7 @@ from sprites import Player, Enemy, Object, Wizard, Warrior, Archer  # Cleaned up
 from loading import LoadingScreen
 
 # Temporary test: set to True to start directly on the battle screen
-TEST_BATTLE_ONLY = True
+TEST_BATTLE_ONLY = False
 
 
 def run_game(user_info):

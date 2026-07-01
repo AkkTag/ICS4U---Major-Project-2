@@ -1,5 +1,5 @@
 {
-    "activeFile": "2_level_map.tmx",
+    "activeFile": "6_battle_map.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -11,8 +11,8 @@
             "scale": 0.75,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 453.33333333333326,
-                "y": 318.66666666666663
+                "x": 448,
+                "y": 320
             }
         },
         "2_level_map.tmx": {
@@ -45,9 +45,9 @@
         },
         "4_level_map.tmx": {
             "expandedObjectLayers": [
-                9,
+                6,
                 8,
-                6
+                9
             ],
             "scale": 0.75,
             "selectedLayer": 7,
@@ -58,9 +58,9 @@
         },
         "5_level_map.tmx": {
             "expandedObjectLayers": [
+                8,
                 9,
-                2,
-                8
+                2
             ],
             "scale": 0.75,
             "selectedLayer": 8,
@@ -156,18 +156,22 @@
     "map.width": 28,
     "openFiles": [
         "2_level_map.tmx",
-        "1_level_map.tmx"
+        "1_level_map.tmx",
+        "3_battle_map.tmx",
+        "4_level_map.tmx",
+        "5_level_map.tmx",
+        "6_battle_map.tmx"
     ],
     "project": "Level 1 Map.tiled-project",
     "recentFiles": [
-        "1_level_map.tmx",
         "2_level_map.tmx",
+        "1_level_map.tmx",
         "3_battle_map.tmx",
-        "5_level_map.tmx",
-        "tileset7.tsx",
-        "6_battle_map.tmx",
-        "tileset6.tsx",
         "4_level_map.tmx",
+        "5_level_map.tmx",
+        "6_battle_map.tmx",
+        "tileset7.tsx",
+        "tileset6.tsx",
         "tileset2.tsx",
         "tileset1.tsx",
         "tileset3.tsx",
